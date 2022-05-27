@@ -75,4 +75,23 @@ public class CalculatorTest {
 		int expected = 216;
 		assertEquals(actual, expected);
 	}
+
+	@Test
+	public void testDivideWith0Denominator() {
+		int a = 100;
+		int b = 0;
+
+		try {
+			Calculator cal = new Calculator();
+			cal.divide(a, b);
+			// if operations completes, that means the test fail
+			fail("Expected an IllegalArgumentException to be thrown");
+		} catch (IllegalArgumentException e) {
+			// if the correct exception with correct message is thrown, test pass
+			assertEquals("Division by zero is not allowed", e.getMessage());
+		} catch (Throwable t) {
+			// if other exception with some message is thrown, test failed
+			assertEquals("Expected an IllegalArgumentException to be thrown", t.getMessage());
+		}
+	}
 }
